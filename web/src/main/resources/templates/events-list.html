@@ -1,0 +1,42 @@
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="hhtp://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <title>Events list</title>
+</head>
+
+<body class="d-flex flex-column">
+
+<!-- Page Content-->
+<section layout:fragment="body" 34class="py-5">
+    <div class="container px-5 my-5">
+        <div class="text-center mb-5">
+            <h1 class="fw-bolder">Find Events</h1>
+            <p class="lead fw-normal text-muted mb-0">Find Events near for you</p>
+        </div>
+        <div class="row gx-5">
+            <div th:each="event :${events}"class="col-lg-6 mb-3">
+                <div class="position-relative mb-3">
+                    <img class="img-fluid rounded-3 mb-3" th:src="${event.photoUrl}" alt="..." />
+                    <div th:text="${event.createdOn}"class="small text-muted"></div>
+                    <h2 th:text ="${event.name}"class="card-title h4"></h2>
+                    <p th:text ="${event.type}"class="card-text"></p>
+                    <p th:text ="${event.startTime}"class="card-text-mute"></p>
+                    <p th:text ="${event.endTime}"class="card-text-mute"></p>
+                </div>
+                <a class="btn btn-primary" th:href="@{/events/{eventId}(eventId=${event.id})}">View</a>
+                <a class="btn btn-primary" th:href="@{/events/{eventId}/edit(eventId=${event.id})}">Edit</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container px-5 my-5">
+        <h2 class="display-4 fw-bolder mb-4">Let's build something together</h2>
+        <a class="btn btn-lg btn-primary" href="#!">Contact us</a>
+    </div>
+</section>
+</body>
+</html>
